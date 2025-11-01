@@ -45,7 +45,7 @@ all department heads may be found at "https://www.kecktm.edu.np/faculty-and-staf
 
 ```bash
 # Install dependencies
-pip install playwright beautifulsoup4 sentence-transformers torch langchain openai
+pip install -r requirements.txt
 
 # Install Playwright browser engine
 playwright install chromium
@@ -58,6 +58,7 @@ playwright install chromium
 | Parameter | Description | Default |
 |------------|-------------|----------|
 | `base_url` | Website homepage to start crawling | Required |
+| `intent`   | The user's intent  | Required |
 | `timeout` | Page load timeout (seconds) | `30` |
 | `wait_for_load` | Wait time for JS rendering | `2` |
 | `headless` | Run browser in headless mode | `True` |
