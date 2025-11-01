@@ -6,7 +6,6 @@ model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def find_top_results(intent: str, links: list[str]) -> list[str]:
 
-    print("[INFO] Encoding the user's intent and webpage content.")
     # Encode user intent and webpage content (URLs or metadata)
     intent_emb = model.encode(intent, convert_to_tensor=True)
     page_embs = model.encode(links, convert_to_tensor=True)

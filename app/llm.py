@@ -8,7 +8,8 @@ load_dotenv()
 
 llm = ChatGroq(
     model='llama-3.1-8b-instant', 
-    temperature=2
+    temperature=2,
+    max_tokens=100
 )
 
 # The prompt to pass to the model
@@ -16,6 +17,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         ('system', '''You are given a user's intent and a list of webpages.
 Return a webpage URL that best matches the user's intent.
+Quote the link exactly while providing the output.
 Use semantic matching and chain of thought to determine where the required content maybe present.
 Do not add any explanation, text, or formatting.
         ```User's intent```
@@ -39,7 +41,6 @@ chain = prompt | llm | StrOutputParser()
 
 def call_llm(intent: str, top_links: list[str]) -> str:
     
-    print('[INFO] Calling the LLM to find the best result')
     # Invoke the chain to get model's response
     response = chain.invoke({"intent": intent, "pages":top_links})
 
